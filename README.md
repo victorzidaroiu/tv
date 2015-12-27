@@ -1,8 +1,8 @@
-## Orders App
+## TV Products App
 
 A small web app using the MEAN stack and a RESTful API.
 
-http://zidaroiu.com:8081
+http://zidaroiu.com:8082
 
 ### Installation
 sudo apt-get install -y mongodb;
