@@ -44,11 +44,12 @@ module.exports = function(grunt) {
 				src: [
 					'client/angular.min.js',
 					'client/angular-route.min.js',
+					'client/angular-cookies.min.js',
 					'client/jquery-2.1.4.min.js',
 					'client/semantic.min.js',
 					'client/index_es5.min.js'
 				],
-				dest: 'public/bundle.min.js',
+				dest: 'public/bundle.min.js'
 			},
 			css: {
 				options: {

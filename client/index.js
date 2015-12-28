@@ -1,22 +1,22 @@
-angular.module('ordersApp', ['ngRoute'])
+angular.module('tvApp', ['ngRoute', 'ngCookies'])
 	.config(['$routeProvider',
 		function ($routeProvider) {
 			$routeProvider
 				.when('/', {
-					templateUrl: 'partials/list.html',
-					controller: 'OrdersListController',
-					title: 'Orders List'
+					templateUrl: 'partials/index.html',
+					controller: 'indexController',
+					title: 'Product selection'
 				})
-				.when('/top-orders', {
-					templateUrl: 'partials/top.html',
-					controller: 'topOrdersController',
-					title: 'Top Ordered Items'
+				.when('/checkout', {
+					templateUrl: 'partials/checkout.html',
+					controller: 'checkoutController',
+					title: 'Product checkout'
 				}).
 				otherwise({
 					redirectTo: '/'
 				});
 		}])
-	.controller('topOrdersController', ["$scope", "$http", function ($scope, $http) {
+	.controller('checkoutController', ["$cookies", "$scope", "$http", function ($cookies, $scope, $http) {
 		let _this = this;
 		_this.list = [];
 
@@ -34,71 +34,41 @@ angular.module('ordersApp', ['ngRoute'])
 
 		_this.get();
 	}])
-	.controller('OrdersListController', ["$scope", "$http", function ($scope, $http) {
+	.controller('indexController', ["$cookies", "$scope", "$http", function ($cookies, $scope, $http) {
 		let _this = this;
+		let locations = ['LONDON', 'LIVERPOOL'];
 		_this.list = [];
-		_this.orderToAdd = {};
-		_this.searchInput = '';
-		$scope.orders = _this;
+		$scope.products = _this;
 
-		_this.get = function() {
-			$http.get('/api/orders').success(function (data) {
-				_this.list = data.map(function (order) {
-					order.orderId = order._id;
-					delete order._id;
-					return order;
-				});
+		console.log($cookies);
+
+		let customerID = $cookies.get('customerID');
+
+		//create a new customer is the customerID is not set
+		if (!customerID)
+			$http.post('/api/customer', {
+				locationID: locations[Date.now() % 2 === 0 ? 0 : 1]
+			}).success(function (response) {
+				if (response.error === false) {
+					customerID = response.data.customerID;
+					_this.getLocation();
+				}
 			});
-		};
+		else
+			_this.getLocation();
 
-		_this.get();
 
-		_this.delete = function (orderId) {
-			$http.delete('/api/' + orderId).success(function() {
-				_this.list = _this.list.filter(function (order) {
-					if (order.orderId === orderId)
-						return false;
-					else
-						return true;
-				});
+		_this.getLocation = function() {
+			$http.get('/api/customer-location/' + customerID).success(function (response) {
+				if (response.error === false) {
+					locationID = response.data.locationID;
+					$http.get('/api/catalogue/' + locationID).success(function (response) {
+						if (response.error === false) {
+							$scope.catalogue = response.data;
+						}
+					});
+				}
 			});
-		};
-
-		_this.search = function() {
-			_this.searchInput = _this.searchInput.trim();
-			if (_this.searchInput.length > 0)
-				$http.get('/api/search/' + _this.searchInput).success(function (data) {
-					_this.list = data.map(function (order) {
-						order.orderId = order._id;
-						delete order._id;
-						return order;
-					});
-				});
-			else
-				_this.get();
-		};
-
-		_this.openAddModal = function() {
-			$('#addOrderModal').modal('show');
-		};
-
-		_this.add = function() {
-			let data = _this.orderToAdd;
-			if (data.companyName && data.customerAddress && data.orderedItem &&
-				data.companyName.length > 0 && data.customerAddress.length > 0 && data.orderedItem.length > 0) {
-				$http.post('/api/', _this.orderToAdd).success(function (data) {
-					_this.list.push({
-						orderId: data._id,
-						companyName: data.companyName,
-						customerAddress: data.customerAddress,
-						orderedItem: data.orderedItem
-					});
-					_this.orderToAdd = {};
-					$('#addOrderModal').modal('hide');
-				});
-			}
-			else
-				$('#addOrderAlert').modal('show');
 		};
 	}])
 	.run(['$rootScope', function($rootScope) {
