@@ -6,7 +6,6 @@ var customersModel = require('../models/customers.js');
 var debug = require('debug')('API');
 
 /* GET home page. */
-
 router.get('/', function (req, res, next) {
 	res.render('index');
 });
@@ -42,6 +41,17 @@ router.post('/api/customer', function (req, res, next) {
 				error: false
 			});
 		}
+	});
+});
+
+router.put('/api/customer/:customerID', function (req, res, next) {
+	ordersModel.findByIdAndUpdate(req.params.customerID, req.body, function (err, data) {
+		if (err)
+			res.json({error: "There was a problem updating customer."});
+		res.json({
+			data: data,
+			error: false
+		});
 	});
 });
 

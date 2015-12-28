@@ -5,22 +5,77 @@
 		</div>
 	</div>
 	<div class="ui page grid">
-		<div class="one column">
-			<h4 class='center' ng-if="orders.list.length==0">
-				<div class="ui segment">
-					<p>There are no products in the catalogue.</p>
-				</div>
-			</h4>
-			<table class="ui four column celled table" ng-if="orders.list.length!=0">
+		<h4 class='center' ng-if="products.catalogue.length === 0">
+			<div class="ui segment">
+				<p>There are no products in the catalogue.</p>
+			</div>
+		</h4>
+		<div class="ui five wide column">
+			<table class="ui celled table" ng-if="products.catalogue.length !== 0">
+				<thead>
+					<tr>
+						<th class="center aligned">Sports</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<div class="catalogueList">
+								<div ng-repeat="product in products.catalogue" ng-if="product.category === 'Sports'">
+									<div class="ui checkbox">
+										<input type="checkbox" name="products[]" ng-attr-data-name="{{product.name}}" ng-attr-data-productID="{{product.productID}}">
+										<label>{{product.name}}</label>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="ui five wide column">
+			<table class="ui celled table" ng-if="products.catalogue.length !== 0">
 				<thead>
 				<tr>
-					<th class="center aligned">Sports</th>
+					<th class="center aligned">News</th>
 				</tr>
 				</thead>
 				<tbody>
-				<tr ng-repeat="order in orders.list">
-					<td class="center aligned">{{products.name}}</td>
+				<tr>
+					<td>
+						<div class="catalogueList">
+							<div ng-repeat="product in products.catalogue" ng-if="product.category === 'News'">
+								<div class="ui checkbox">
+									<input type="checkbox" name="products[]" ng-attr-data-name="{{product.name}}" ng-attr-data-productID="{{product.productID}}">
+									<label>{{product.name}}</label>
+								</div>
+							</div>
+						</div>
+					</td>
 				</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="ui six wide column">
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th class="center aligned">Basket</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td ng-if="products.basket.length !== 0">
+							<div class="catalogueList ui bulleted list">
+								<div class="item" ng-repeat="product in products.basket">{{product.name}}</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p class='center' ng-if="products.basket.length === 0">There are no products in the basket.</p>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

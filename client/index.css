@@ -22,3 +22,12 @@ a {
 .right {
     text-align: right;
 }
+
+.catalogueList {
+    margin: auto;
+    width: 250px;
+}
+
+.catalogueList > div {
+    padding: 5px;
+}
