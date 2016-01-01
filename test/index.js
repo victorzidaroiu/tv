@@ -24,6 +24,19 @@ describe('TV API', function() {
 		});
 	});
 
+	it('should update a customer', function(done) {
+		rest.put(server + '/api/customer/' + customerID,{
+			data: {
+				basket: {}
+			}
+		}).on('success', function(response) {
+			debug('Returned Data: ', response);
+
+			if (response.error === false)
+				done();
+		});
+	});
+
 	it('should get the locationID of a customer', function(done) {
 		rest.get(server + '/api/customer-location/' + customerID).on('success', function(response) {
 			debug('Returned Data: ', response);
