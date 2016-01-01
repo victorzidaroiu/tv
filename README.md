@@ -2,6 +2,8 @@
 
 A small web app using the MEAN stack and a RESTful API.
 
+### Demo
+
 http://zidaroiu.com:8082
 
 ### Installation
