@@ -9,7 +9,7 @@ http://zidaroiu.com:8082
 ### Installation
 sudo apt-get install -y mongodb;
 
-npm install -g grunt-cli;npm install -g mocha;npm install -g watch;npm install -g nodemon;npm install
+npm install -g forever;npm install -g grunt-cli;npm install -g mocha;npm install -g watch;npm install -g nodemon;npm install
 
 ### Start server
 
