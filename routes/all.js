@@ -13,9 +13,10 @@ router.get('/', function (req, res, next) {
 /* REST API */
 router.get('/api/customer-location/:customerId', function (req, res, next) {
 	customersModel.findById(req.params.customerId, function (err, data) {
-		if (err)
+		if (err || data === null)
 			res.json({error: "There was a problem retrieving the customer information."});
 		else {
+			debug(data);
 			//data = data.toObject();
 			//delete data._id;
 			//delete data.__v;

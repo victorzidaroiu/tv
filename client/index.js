@@ -116,6 +116,8 @@ angular.module('tvApp', ['ngRoute', 'ngCookies'])
 						}
 					});
 				}
+				else
+					_this.createCustomerID();
 			});
 		};
 
@@ -131,8 +133,7 @@ angular.module('tvApp', ['ngRoute', 'ngCookies'])
 			$scope.$apply();
 		};
 
-		//create a new customer is the customerID is not set
-		if (!_this.customerID)
+		_this.createCustomerID = function() {
 			$http.post('/api/customer', {
 				locationID: locations[Date.now() % 2 === 0 ? 0 : 1],
 				basket: {}
@@ -143,6 +144,11 @@ angular.module('tvApp', ['ngRoute', 'ngCookies'])
 					_this.getLocation();
 				}
 			});
+		};
+
+		//create a new customer if the customerID is not set
+		if (!_this.customerID)
+			_this.createCustomerID();
 		else
 			_this.getLocation();
 	}])
