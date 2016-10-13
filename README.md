@@ -4,21 +4,30 @@ A small web app using the MEAN stack and a RESTful API.
 
 ### Demo
 
-http://zidaroiu.com:8082
+http://tv.zidaroiu.herokuapps.com
+
+### Requirements
+
+- node
+- MongoDB
+- Mocha
+- Grunt
+
+- mongoDB
 
 ### Installation
-sudo apt-get install -y mongodb;
 
-npm install -g forever;npm install -g grunt-cli;npm install -g mocha;npm install -g watch;npm install -g nodemon;npm install
+``` nvm use ```
+``` npm i ```
 
 ### Start server
 
-npm start
+``` npm start ```
 
 ### Build
 
-npm run build
+``` npm run build ```
 
 ### Test
 
-npm test
+``` npm test ```

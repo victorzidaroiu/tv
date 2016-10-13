@@ -1,6 +1,8 @@
 var rest = require('restler');
 var debug = require('debug')('api-test');
-var server = 'http://zidaroiu.com:8082';
+require('dotenv').config({ silent: true })
+
+var server = 'http://localhost:' + process.env.PORT;
 var locations = ['LONDON', 'LIVERPOOL'];
 var customerID = null;
 var locationID = null;
