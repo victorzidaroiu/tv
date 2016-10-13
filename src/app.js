@@ -5,11 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/all.js');
+require('dotenv').config({ silent: true })
 
 var app = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/products', function(err) {
+mongoose.connect(process.env.MONGODB_URI, function(err) {
   if(err) {
     console.log('mongodb connection error', err);
   } else {
