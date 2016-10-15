@@ -2,8 +2,6 @@
 
 A small web app using the MEAN stack and a RESTful API.
 
-### Demo
-
 http://tv.zidaroiu.herokuapps.com
 
 ### Requirements
@@ -12,8 +10,6 @@ http://tv.zidaroiu.herokuapps.com
 - MongoDB
 - Mocha
 - Grunt
-
-- mongoDB
 
 ### Installation
 
