@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/all.js');
+var routes = require('./routes.js');
 require('dotenv').config({ silent: true })
 
 var app = express();
