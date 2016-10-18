@@ -2,7 +2,7 @@
 
 A small web app using the MEAN stack and a RESTful API.
 
-http://tv.zidaroiu.herokuapps.com
+http://tv.zidaroiu.com
 
 ### Requirements
 
