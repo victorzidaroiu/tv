@@ -1,6 +1,6 @@
 ## TV Products App
 
-A small web app using the MEAN stack and a RESTful API.
+This app allows you to order items. It is build using the MEAN stack and it implements RESTful API to communicate to the AngularJS front end.
 
 http://tv.zidaroiu.com
 
