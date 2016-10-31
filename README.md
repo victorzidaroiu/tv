@@ -8,11 +8,11 @@ http://tv.zidaroiu.com
 
 - node
 - MongoDB
-- Mocha
-- Grunt
 
 ### Installation
 
+``` npm i -g mocha```
+``` npm i -g grunt-cli```
 ``` nvm use ```
 ``` npm i ```
 
