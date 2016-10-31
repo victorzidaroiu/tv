@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var schema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	locationID: String,
 	basket: {}
 });
 
-module.exports = mongoose.model('Customers', schema);
+export default mongoose.model('Customers', schema);

@@ -1,10 +1,10 @@
-var customersModel = require('../models/customers.js');
+import customersModel from '../models/customers.js';
 
-module.exports = function (req, res, next) {
+export default (req, res, next) => {
 	customersModel.create(req.body, function (err, data) {
-		if (err)
+		if (err) {
 			res.json({error: "There was a problem creating a new customer."});
-		else {
+		} else {
 			data = data.toObject();
 			data.customerID = data._id;
 			delete data._id;

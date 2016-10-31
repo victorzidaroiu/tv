@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var schema = new mongoose.Schema({
+const schema = new mongoose.Schema({
 	name: String,
 	category: String,
 	locationID: String
 });
 
-var productsModel = mongoose.model('Products', schema);
-//populate products
+const productsModel = mongoose.model('Products', schema);
+
 productsModel.find({}, function (err, data) {
 	if (!err) {
 		if (data.length === 0) {
@@ -20,4 +20,4 @@ productsModel.find({}, function (err, data) {
 	}
 });
 
-module.exports = productsModel;
+export default productsModel;
