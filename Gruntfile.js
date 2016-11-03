@@ -26,21 +26,9 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		uglify: {
-			options: {
-				mangle: true,
-				compress: true
-			},
-			build: {
-				src: [
-					'tmp/index_es6.js'
-				],
-				dest: 'tmp/index_es6.min.js'
-			}
-		},
 		babel: {
 			options: {
-				sourceMap: false,
+				sourceMap: true,
 				"presets": es2015
 			},
 			dist: {
@@ -52,12 +40,12 @@ module.exports = function(grunt) {
 		concat: {
 			js: {
 				src: [
-					'src/client/vendor/angular.min.js',
-					'src/client/vendor/angular-route.min.js',
-					'src/client/vendor/angular-cookies.min.js',
-					'src/client/vendor/jquery-2.1.4.min.js',
-					'src/client/vendor/semantic.min.js',
-					'tmp/index_es6.min.js'
+					'public/vendor/angular.min.js',
+					'public/vendor/angular-route.min.js',
+					'public/vendor/angular-cookies.min.js',
+					'public/vendor/jquery-2.1.4.min.js',
+					'public/vendor/semantic.min.js',
+					'tmp/index_es6.js'
 				],
 				dest: 'public/bundle.min.js'
 			},
@@ -66,7 +54,7 @@ module.exports = function(grunt) {
 					separator: ''
 				},
 				src: [
-					'src/client/vendor/semantic.min.css',
+					'public/vendor/semantic.min.css',
 					'tmp/index.min.css',
 					'tmp/catalogue.min.css'
 				],
@@ -75,7 +63,6 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-sass');
@@ -83,5 +70,5 @@ module.exports = function(grunt) {
 
 	require('load-grunt-tasks')(grunt);
 
-	grunt.registerTask('default', ['sass', 'babel', 'uglify', 'cssmin', 'concat']);
+	grunt.registerTask('default', ['sass', 'babel', 'cssmin', 'concat']);
 };

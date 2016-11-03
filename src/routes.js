@@ -1,24 +1,28 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import customerCreate from './controllers/customer-create.js';
-import customerUpdate from './controllers/customer-update.js';
-import catalogue from './controllers/catalogue.js';
-import customerGet from './controllers/customer-get.js';
-import dotenvModule from 'dotenv';
+import _debug from 'debug';
+import customerCreate from './controllers/customer-create';
+import customerUpdate from './controllers/customer-update';
+import catalogue from './controllers/catalogue';
+import customerGet from './controllers/customer-get';
 
-const dotenv = dotenvModule.config({ silent: true });
+const debug = _debug('server');
+dotenv.config({ silent: true });
+/* eslint-disable */
 const router = express.Router();
+/* eslint-enable */
 
-mongoose.connect(process.env.MONGODB_URI, function(err) {
-  if(err) {
-    console.log('mongodb connection error', err);
+mongoose.connect(process.env.MONGODB_URI, (err) => {
+  if (err) {
+    debug('mongodb connection error', err);
   } else {
-    console.log('mongodb connection successful');
+    debug('mongodb connection successful');
   }
 });
 
-router.get('/', function (req, res, next) {
-	res.render('index');
+router.get('/', (req, res) => {
+  res.render('index');
 });
 
 router.get('/api/customer-location/:customerId', customerGet);

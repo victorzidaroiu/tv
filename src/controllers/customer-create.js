@@ -1,18 +1,20 @@
-import customersModel from '../models/customers.js';
+import customersModel from '../models/customers';
 
-export default (req, res, next) => {
-	customersModel.create(req.body, function (err, data) {
-		if (err) {
-			res.json({error: "There was a problem creating a new customer."});
-		} else {
-			data = data.toObject();
-			data.customerID = data._id;
-			delete data._id;
-			delete data.__v;
-			res.json({
-				data: data,
-				error: false
-			});
-		}
-	});
-}
+export default (req, res) => {
+  customersModel.create(req.body, (err, response) => {
+    if (err) {
+      res.json({ error: 'There was a problem creating a new customer.' });
+    } else {
+      const data = response.toObject();
+      /* eslint-disable */
+      data.customerID = data._id;
+      delete data._id;
+      delete data.__v;
+      /* eslint-enable */
+      res.json({
+        data,
+        error: false,
+      });
+    }
+  });
+};

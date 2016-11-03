@@ -1,20 +1,18 @@
 ## TV Products App
 
-This app allows you to select and order tv products. It is built using the MEAN stack and it implements a RESTful API to communicate with the AngularJS front end.
+This app allows you to select and order tv products. It is built using the MEAN stack and it implements a REST API to communicate with the AngularJS front end.
 
 http://tv.zidaroiu.com
 
 ### Requirements
 
-- node
-- MongoDB
+* MongoDB
 
 ### Installation
 
-``` npm i -g mocha```
-``` npm i -g grunt-cli```
-``` nvm use ```
-``` npm i ```
+* ``` nvm use ```
+* ```cp .env.dev .env```
+* ``` npm i ```
 
 ### Start server
 
