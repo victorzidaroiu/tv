@@ -1,5 +1,5 @@
 /*global $ */
-/*
+
 angular.module('tvApp', ['ngRoute', 'ngCookies'])
   .config(['$routeProvider', ($routeProvider) => {
     $routeProvider
@@ -171,4 +171,3 @@ angular.module('tvApp', ['ngRoute', 'ngCookies'])
 if (String.prototype.trim === undefined) {
   String.prototype.trim = () => this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
 }
-*/
