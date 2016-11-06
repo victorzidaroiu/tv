@@ -4,9 +4,9 @@
   "description": "A TV products web app using the MEAN stack.",
   "main": "index.js",
   "scripts": {
-    "test": " mocha ./tests/*",
+    "test": "DEBUG=server mocha --compilers js:babel-core/register ./tests/**",
     "start": "node .",
-    "dev": "nodemon .",
+    "dev": "DEBUG=server nodemon .",
     "build": "grunt",
     "eslint": "eslint ./tests, ./src"
   },
@@ -27,11 +27,6 @@
   },
   "homepage": "https://github.com/victorzidaroiu/tv#readme",
   "dependencies": {
-    "babel-core": "*",
-    "babel-plugin-transform-async-to-generator": "^6.16.0",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015": "^6.16.0",
-    "babel-register": "^6.16.3",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
@@ -53,6 +48,11 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-register": "^6.16.3",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.1",

@@ -1,8 +1,10 @@
 /* global describe, it */
 
+import 'babel-polyfill'
 import restler from 'restler';
 import _debug from 'debug';
 import dotenv from 'dotenv';
+import server from '../../src/server';
 
 dotenv.config({ silent: true });
 const debug = _debug('api-test');
@@ -12,7 +14,6 @@ let customerID = null;
 let locationID = null;
 
 describe('TV API', () => {
-  this.timeout(5000);
   it('should create a customer', (done) => {
     locationID = locations[Date.now() % 2 === 0 ? 0 : 1];
 

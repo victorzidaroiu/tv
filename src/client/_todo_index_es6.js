@@ -1,5 +1,5 @@
+/* eslint-disable */
 /*global $ */
-
 angular.module('tvApp', ['ngRoute', 'ngCookies'])
   .config(['$routeProvider', ($routeProvider) => {
     $routeProvider

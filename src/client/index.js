@@ -166,12 +166,3 @@ if (String.prototype.trim === undefined) {
 	};
 }
 /* eslint-enable */
-/*
-if (Object.prototype.objSize === undefined)
-	Object.prototype.objSize = function(obj) {
-		var size = 0, key;
-		for (key in obj) {
-			if (obj.hasOwnProperty(key)) size++;
-		}
-		return size;
-	};*/
